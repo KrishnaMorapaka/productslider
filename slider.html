@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 20px 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header .logo{
+    font-size: 25px;
+    color: #333;
+}
+header .navbar a{
+    font-size: 25px;
+    color: #666;
+    margin-left: 10px;
+}
+header .navbar a:hover{
+    color: blue;
+}
+.container{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 9%;
+    position: relative;
+    overflow: hidden;
+}
+.container.content{
+    flex: 1 1 400px;
+}
+.image{
+    width: 600px;
+}
+.container.image{
+    flex: 1 1 400px;
+    position: relative;
+}
+.container .image .mobile{
+    width: 100%;
+    display: none;
+}
+
+.container .image .mobile.active{
+    display: initial;
+    animation: animate .5s cubic-bezier(.45,1.63,.98,1.55);
+}
+@keyframes animate{
+    0%{
+        transform: rotate(0deg) scale(.7);
+    }
+}
+.container .content .btn{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 17px;
+    padding: 9px 40px;
+    background-color: #333;
+    color: #fff;
+}
+.container .content .btn:hover{
+    background-color: tomato;
+}
+.container .left,
+.container .right{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    width: 50px;
+    border: 2px solid #333;
+    color: #333;
+    line-height: 45px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
+    cursor: pointer;
+}
+.container .left{
+    left: 30px;
+}
+.container .right{
+    right: 30px;
+}
+.container .left:hover,
+.container .right:hover{
+    background-color: #333;
+    color: #fff;
+}
+</style>
+<body>
+    <header>
+        <a href="#" class="logo">Apple</a>
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Customize</a>
+            <a href="#">Contact</a>
+            <a href="#">Account</a>
+        </nav>
+    </header>
+        <section class="container">
+            <div class="content">
+                <h1>Newly Lanched Mobiles</h1><br>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Libero at voluptatibus dolores pariatur, perferendis quaerat accusamus quae exercitationem mollitia ducimus?</p>
+                <a href="#" class="btn">add to cart</a>
+            </div>
+            <div class="image">
+                <img class="mobile active" src="/download.jpg" alt="" srcset="">
+                <img class="mobile" src="/images (1).jpg" alt="" srcset="">
+                <img class="mobile" src="/images.jpg" alt="" srcset="">
+            </div>
+            <div class="left" onclick="prev()"> < </div>
+            <div class="right" onclick="next()"> > </div>
+        </section>
+        <script>
+            let mobile = document.querySelectorAll('.mobile');
+            let index =0;
+
+            function next(){
+                mobile[index].classList.remove('active');
+                index = (index + 1) % mobile.length;
+                mobile[index].classList.add('active');
+            }
+            function prev(){
+                mobile[index].classList.remove('active');
+                index = (index - 1 + mobile.length) % mobile.length;
+                mobile[index].classList.add('active');
+            }
+        </script>
+</body>
+</html>
